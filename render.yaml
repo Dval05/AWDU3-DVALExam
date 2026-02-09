@@ -12,7 +12,9 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 4001
+        value: 4002
+      - key: FRONTEND_URL
+        value: https://awdu3-frontend.onrender.com
       # Importamos variables del grupo
       - fromGroup: app-settings
 
@@ -41,6 +43,6 @@ envVarGroups:
     envVars:
       - key: NODE_ENV
         value: production
-      # Agrega aquí tu MongoDB URI cuando lo tengas
-      # - key: MONGODB_URI
-      #   value: tu_mongodb_connection_string
+      # MongoDB URI - Actualiza con tu conexión
+      - key: MONGODB_URI
+        value: mongodb+srv://Danna:Danna@cluster0.ravjkye.mongodb.net/DannaStore

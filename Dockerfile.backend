@@ -11,17 +11,16 @@ COPY package*.json ./
 RUN npm install --production
 
 # Copiar el código fuente
-COPY Server.mjs .
 COPY index.mjs .
 COPY models ./models
 COPY routes ./routes
 
 # Exponer el puerto
-EXPOSE 4001
+EXPOSE 4002
 
 # Variable de entorno
-ENV PORT=4001
+ENV PORT=4002
 ENV NODE_ENV=production
 
 # Comando para iniciar la aplicación
-CMD ["node", "Server.mjs"]
+CMD ["node", "index.mjs"]

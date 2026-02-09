@@ -13,7 +13,8 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('/computerstore/products');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:4002';
+      const response = await fetch(`${apiUrl}/computerstore/products`);
       const data = await response.json();
       setAvailableProducts(data);
       setLoading(false);
