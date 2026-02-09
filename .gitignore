@@ -67,7 +67,14 @@ web_modules/
 
 # dotenv environment variable files
 .env
-.env.*
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+# NO ignorar .env.production para que Render lo tenga
+# .env.production
+.env.production.local
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)

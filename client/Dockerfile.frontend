@@ -5,7 +5,7 @@ FROM node:18-alpine as build
 WORKDIR /app
 
 # Argumento para la URL del backend (se pasa desde render.yaml)
-ARG REACT_APP_API_URL
+ARG REACT_APP_API_URL=https://awdu3-backend.onrender.com
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 # Copiar archivos de dependencias
@@ -16,6 +16,10 @@ RUN npm install
 
 # Copiar el código fuente
 COPY . .
+
+# Crear archivo .env.production con la variable de entorno
+RUN echo "REACT_APP_API_URL=$REACT_APP_API_URL" > .env.production && \
+    cat .env.production
 
 # Construir la aplicación con las variables de entorno
 RUN npm run build
