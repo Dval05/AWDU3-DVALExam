@@ -5,7 +5,6 @@ services:
     runtime: node
     env: node
     region: oregon
-    plan: free
     buildCommand: npm install
     startCommand: node Server.mjs
     envVars:
@@ -15,12 +14,11 @@ services:
         value: 4001
     healthCheckPath: /
 
-  # Frontend Service
+  # Frontend Service - Static Site
   - type: web
     name: awdu3-frontend
     runtime: static
     env: static
-    plan: free
     buildCommand: cd client && npm install && npm run build
     staticPublishPath: ./client/build
     envVars:
