@@ -29,7 +29,7 @@ services:
     dockerContext: ./client
     dockerfilePath: ./client/Dockerfile.frontend
     envVars:
-      # URL del backend
+      # URL del backend - también se pasa como build arg
       - key: REACT_APP_API_URL
         value: https://awdu3-backend.onrender.com
       # Importamos variables del grupo
