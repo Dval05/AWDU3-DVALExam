@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Servicio de Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: awdu3-backend
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=production
+      - PORT=4001
+      - MONGODB_URI=${MONGODB_URI}
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Servicio de Frontend
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.frontend
+    container_name: awdu3-frontend
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:4001
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

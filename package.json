@@ -1,0 +1,27 @@
+{
+  "name": "awdu3-dvalexam",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Dval05/AWDU3-DVALExam#readme",
+  "bugs": {
+    "url": "https://github.com/Dval05/AWDU3-DVALExam/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dval05/AWDU3-DVALExam.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "expresss": "^0.0.0",
+    "mongoose": "^9.1.6"
+  }
+}

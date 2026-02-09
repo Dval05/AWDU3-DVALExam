@@ -1,0 +1,36 @@
+services:
+  # Backend Service
+  - type: web
+    name: awdu3-backend
+    runtime: node
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: node Server.mjs
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4001
+    healthCheckPath: /
+
+  # Frontend Service
+  - type: web
+    name: awdu3-frontend
+    runtime: static
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/build
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Configura la URL del backend después del despliegue
+      - key: REACT_APP_API_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
