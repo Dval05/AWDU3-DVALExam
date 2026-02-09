@@ -1,33 +1,46 @@
 services:
-  # Backend Service
+  # ----------------------------------------
+  # 1. Backend (API)
+  # ----------------------------------------
   - type: web
     name: awdu3-backend
-    runtime: node
-    env: node
+    runtime: docker
+    plan: free
     region: oregon
-    buildCommand: npm install
-    startCommand: node Server.mjs
+    dockerfilePath: ./Dockerfile.backend
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 4001
-    healthCheckPath: /
+      # Importamos variables del grupo
+      - fromGroup: app-settings
 
-  # Frontend Service - Static Site
+  # ----------------------------------------
+  # 2. Frontend (React)
+  # ----------------------------------------
   - type: web
     name: awdu3-frontend
-    runtime: static
-    env: static
-    buildCommand: cd client && npm install && npm run build
-    staticPublishPath: ./client/build
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerContext: ./client
+    dockerfilePath: ./client/Dockerfile.frontend
+    envVars:
+      # URL del backend
+      - key: REACT_APP_API_URL
+        value: https://awdu3-backend.onrender.com
+      # Importamos variables del grupo
+      - fromGroup: app-settings
+
+# ----------------------------------------
+# VARIABLES GLOBALES
+# ----------------------------------------
+envVarGroups:
+  - name: app-settings
     envVars:
       - key: NODE_ENV
         value: production
-      # Configura la URL del backend después del despliegue
-      - key: REACT_APP_API_URL
-        sync: false
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+      # Agrega aquí tu MongoDB URI cuando lo tengas
+      # - key: MONGODB_URI
+      #   value: tu_mongodb_connection_string
