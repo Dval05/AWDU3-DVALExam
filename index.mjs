@@ -21,6 +21,15 @@ db.once('open', () => console.log('System connected to MongoDb Database'));
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Ruta de prueba en raíz
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'Danna Computers Store Server is running', 
+        endpoints: ['/computerstore/products'],
+        port: port
+    });
+});
+
 app.use('/computerstore', productsRoutes);
 
 app.listen(port, () => {

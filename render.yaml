@@ -11,12 +11,11 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 4002
       - key: FRONTEND_URL
         value: https://awdu3-frontend.onrender.com
       # Importamos variables del grupo
       - fromGroup: app-settings
+    healthCheckPath: /
 
   # ----------------------------------------
   # 2. Frontend (React)

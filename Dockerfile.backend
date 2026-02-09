@@ -15,11 +15,10 @@ COPY index.mjs .
 COPY models ./models
 COPY routes ./routes
 
-# Exponer el puerto
-EXPOSE 4002
+# Exponer el puerto (Render usa puerto dinámico)
+EXPOSE 10000
 
 # Variable de entorno
-ENV PORT=4002
 ENV NODE_ENV=production
 
 # Comando para iniciar la aplicación
